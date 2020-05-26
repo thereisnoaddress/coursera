@@ -11,6 +11,8 @@ Note:
 
 There may be more than one LIS combination, it is only necessary for you to return the length.
 Your algorithm should run in O(n2) complexity.
+with help from: https://www.youtube.com/watch?v=fV-TF4OvZpk
+
 Follow up: Could you improve it to O(n log n) time complexity?
 """
 
