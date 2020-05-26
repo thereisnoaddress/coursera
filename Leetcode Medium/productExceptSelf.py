@@ -19,6 +19,8 @@ def productExceptSelf(nums):
     # rev = [24,12,8,6]
     # Output = [24,12,8,6]
     # idea: multiply by sum of previous sums, forward and backward
+    # time: O(n), space: O(n)
+    
     arr = []
     forwardMultiplier = 1
     backwardMultiplier = 1
