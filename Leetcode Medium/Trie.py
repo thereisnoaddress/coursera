@@ -23,41 +23,60 @@ class Trie:
         """
         Initialize your data structure here.
         """
-        # maybe {firstChar: str -> words: string[]}? 
-        self.words = {}
+        self.complete = False
+        self.children = {}
+        self.content = ""
+    
+    def set(self, content): 
+        self.content = content
 
     def insert(self, word: str) -> None:
         """
         Inserts a word into the trie.
         """
-        prefix = word[0]
-        if not self.words or not prefix in self.words: 
-            self.words[prefix] = [word]
-        else: 
-            self.words[prefix].append(word)
+        curNode = self
+        
+        for char in word: 
+            if char not in curNode.children: 
+                newNode = Trie()
+                newNode.set(char)
+                curNode.children[char] = newNode
+                curNode = newNode
+            else: 
+                curNode = curNode.children[char]
+        curNode.complete = True
+        
 
     def search(self, word: str) -> bool:
         """
         Returns if the word is in the trie.
         """
-        if not word[0] in self.words: 
-            return False
-        else: 
-            return word in self.words[word[0]]
+        curNode = self
+        
+        for char in word: 
+            if char not in curNode.children: 
+                return False
+            curNode = curNode.children[char]
+        
+        return curNode.complete
+            
+        
 
     def startsWith(self, prefix: str) -> bool:
         """
         Returns if there is any word in the trie that starts with the given prefix.
         """
-        if not self.words or prefix[0] not in self.words:
-            return False
-        else: 
-            prefixArr = self.words[prefix[0]]
-            prefixLength = len(prefix)
-            for word in prefixArr: 
-                if word[0:prefixLength] == prefix: 
-                    return True
-        return False
+        
+        curNode = self
+        
+        for char in prefix: 
+            if char not in curNode.children: 
+                return False
+            curNode = curNode.children[char]
+        
+        return True
+        
+
             
 
 
@@ -70,5 +89,8 @@ if __name__ == "__main__":
     print(obj.search("apple"))
     print(obj.search("app"))
     print(obj.startsWith("app"))
+    print(obj.children['a'].children['p'].children['p'].children, obj.children['a'].children['p'].children['p'].complete)
     obj.insert("app")
+    print(obj.children['a'].children['p'].children['p'].complete)
     print(obj.search("app"))
+  
