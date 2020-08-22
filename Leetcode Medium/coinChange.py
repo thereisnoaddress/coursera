@@ -4,7 +4,7 @@ Leetcode 322
 """
 
 class Solution:
-    def coinChange(self, coins: List[int], amount: int) -> int:
+    def coinChange(self, coins, amount) -> int:
         # using a DP table to keep track of minimum number of coins needed for amount DP[i]
         # bottom-up approach: start with 0 and work my way up to amount
         DP = [amount + 1] * (amount + 1)
