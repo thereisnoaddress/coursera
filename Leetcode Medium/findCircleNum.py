@@ -1,5 +1,5 @@
 class Solution:
-    def findCircleNum(self, M: List[List[int]]) -> int:
+    def findCircleNum(self, M):
         
        
         

@@ -1,6 +1,5 @@
 class Solution:
-    def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
-        # union find solution 
+    def findRedundantConnection(self, edges):
         collection = [0] * len(edges)
         
         def find(edge): 
